@@ -2,7 +2,7 @@
 
 Web de demostración para una **clínica de fisioterapia** (vale igual para dentistas, psicólogos o centros de estética). La clínica es **ficticia**.
 
-🔗 **Verla funcionando:** _(enlace de GitHub Pages, pendiente)_
+🔗 **Verla funcionando:** https://sergio-sysops.github.io/web-clinica/
 
 ## Qué incluye
 
