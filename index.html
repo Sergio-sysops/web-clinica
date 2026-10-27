@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clínica Alba · Fisioterapia en Villanueva</title>
+  <meta name="description" content="Fisioterapia general y deportiva, suelo pélvico, punción seca y pilates terapéutico. Pide cita por WhatsApp.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+<header class="cabecera">
+  <a href="#inicio" class="marca"><span class="logo" aria-hidden="true"></span><span data-c="nombre"></span></a>
+  <nav class="menu">
+    <a href="#que-te-pasa">¿Qué te pasa?</a>
+    <a href="#tratamientos">Tratamientos</a>
+    <a href="#equipo">Equipo</a>
+    <a href="#dudas">Dudas</a>
+  </nav>
+  <a href="#cita" class="boton boton-peq">Pedir cita</a>
+</header>
+
+<section id="inicio" class="portada">
+  <div class="portada-texto">
+    <p class="subtitulo" data-c="subtitulo"></p>
+    <h1>Vuelve a moverte <em>sin dolor</em></h1>
+    <p class="lema">Te escuchamos, buscamos la causa y te acompañamos hasta que estés bien. Sin prisas y con un plan pensado para ti.</p>
+    <div class="botones">
+      <a href="#cita" class="boton">Pedir cita</a>
+      <a href="#que-te-pasa" class="boton boton-suave">¿Qué tratamiento necesito?</a>
+    </div>
+    <p class="estado" id="estado"></p>
+  </div>
+  <div class="portada-arte" aria-hidden="true">
+    <div class="circulo c1"></div><div class="circulo c2"></div><div class="circulo c3"></div>
+    <div class="tarjeta-flotante">
+      <p class="tf-num">+2.000</p><p>pacientes nos han confiado su recuperación</p>
+    </div>
+  </div>
+</section>
+
+<main>
+  <section id="que-te-pasa" class="seccion">
+    <p class="antetitulo">Paso 1</p>
+    <h2>¿Qué te pasa?</h2>
+    <p class="intro">Toca lo que más se parece a lo que sientes y te decimos qué tratamiento te puede ayudar.</p>
+    <div class="sintomas" id="sintomas"></div>
+    <div class="recomendacion" id="recomendacion" hidden></div>
+  </section>
+
+  <section id="tratamientos" class="seccion seccion-alt">
+    <p class="antetitulo">Lo que hacemos</p>
+    <h2>Tratamientos</h2>
+    <div class="tratamientos" id="tratamientos-lista"></div>
+  </section>
+
+  <section id="equipo" class="seccion">
+    <p class="antetitulo">Quiénes somos</p>
+    <h2>Nuestro equipo</h2>
+    <p class="intro">Fisioterapeutas colegiados que se forman cada año para tratarte con lo último.</p>
+    <div class="equipo" id="equipo-lista"></div>
+  </section>
+
+  <section id="cita" class="seccion seccion-alt">
+    <p class="antetitulo">Paso 2</p>
+    <h2>Pide tu cita</h2>
+    <p class="intro">Elige tratamiento y cuándo te viene mejor. Te escribimos con los huecos libres.</p>
+    <form id="form-cita" class="formulario">
+      <label class="ancho">Tratamiento <select name="tratamiento" id="c-tratamiento" required></select></label>
+      <fieldset class="ancho">
+        <legend>¿Qué días te vienen bien?</legend>
+        <div class="chips" id="c-dias"></div>
+      </fieldset>
+      <fieldset class="ancho">
+        <legend>¿Mañana o tarde?</legend>
+        <div class="chips">
+          <label class="chip"><input type="radio" name="franja" value="Mañana" checked><span>☀️ Mañana</span></label>
+          <label class="chip"><input type="radio" name="franja" value="Tarde"><span>🌙 Tarde</span></label>
+          <label class="chip"><input type="radio" name="franja" value="Me da igual"><span>Me da igual</span></label>
+        </div>
+      </fieldset>
+      <label>Nombre <input name="nombre" maxlength="60" required autocomplete="given-name"></label>
+      <label>¿Primera visita? <select name="primera"><option>Sí, es la primera vez</option><option>No, ya he venido</option></select></label>
+      <input type="text" name="web" class="trampa" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <p class="aviso ancho">🔒 No escribas aquí datos médicos: lo hablamos con calma en consulta.</p>
+      <button class="boton boton-wa ancho">Pedir cita por WhatsApp</button>
+    </form>
+  </section>
+
+  <section id="dudas" class="seccion">
+    <p class="antetitulo">Antes de venir</p>
+    <h2>Preguntas frecuentes</h2>
+    <div class="dudas" id="dudas-lista"></div>
+  </section>
+
+  <section class="seccion seccion-alt">
+    <div class="donde">
+      <div>
+        <p class="antetitulo izq">Dónde estamos</p>
+        <h2 class="izq">Ven a vernos</h2>
+        <p class="direccion"><span data-c="direccion"></span><br><span data-c="ciudad"></span></p>
+        <p><a id="mapa" class="boton" target="_blank" rel="noopener">📍 Cómo llegar</a>
+           <a id="tel" class="boton boton-suave">📞 Llamar</a></p>
+      </div>
+      <table class="horario"><caption>Horario</caption><tbody id="horario"></tbody></table>
+    </div>
+  </section>
+</main>
+
+<footer class="pie">
+  <p><span data-c="nombre"></span> · <span data-c="subtitulo"></span> · <span data-c="direccion"></span>, <span data-c="ciudad"></span></p>
+  <p class="credito">Web de demostración con una clínica ficticia · Hecha por <a href="https://github.com/Sergio-sysops" target="_blank" rel="noopener">sergio_sysops</a></p>
+</footer>
+
+<a class="wa-flotante" id="wa-flotante" aria-label="WhatsApp" target="_blank" rel="noopener">💬</a>
+
+<script src="datos.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
