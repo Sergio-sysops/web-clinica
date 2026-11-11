@@ -11,10 +11,10 @@
 </head>
 <body>
 
-<header class="cabecera">
-  <a href="#inicio" class="marca"><span class="logo" aria-hidden="true"></span><span data-c="nombre"></span></a>
+<header class="capsula" id="capsula">
+  <a href="#inicio" class="marca"><span data-c="nombre"></span></a>
   <nav class="menu">
-    <a href="#que-te-pasa">¿Qué te pasa?</a>
+    <a href="#que-te-pasa">¿Dónde te duele?</a>
     <a href="#tratamientos">Tratamientos</a>
     <a href="#equipo">Equipo</a>
     <a href="#dudas">Dudas</a>
@@ -24,17 +24,19 @@
 
 <section id="inicio" class="portada">
   <div class="portada-texto">
-    <p class="subtitulo" data-c="subtitulo"></p>
-    <h1>Vuelve a moverte <em>sin dolor</em></h1>
-    <p class="lema">Te escuchamos, buscamos la causa y te acompañamos hasta que estés bien. Sin prisas y con un plan pensado para ti.</p>
+    <p class="subtitulo"><span data-c="subtitulo"></span> · <span data-c="ciudad"></span></p>
+    <h1 id="nombre-grande">Clínica <em>Alba</em></h1>
+    <p class="lema">Te escuchamos, buscamos la causa y te acompañamos hasta que estés bien.</p>
     <div class="botones">
       <a href="#cita" class="boton">Pedir cita</a>
-      <a href="#que-te-pasa" class="boton boton-suave">¿Qué tratamiento necesito?</a>
+      <a href="#que-te-pasa" class="boton boton-suave">¿Dónde te duele?</a>
     </div>
     <p class="estado" id="estado"></p>
   </div>
-  <div class="portada-arte" aria-hidden="true">
-    <div class="circulo c1"></div><div class="circulo c2"></div><div class="circulo c3"></div>
+  <div class="portada-video" id="portada-video">
+    <video id="video-portada" autoplay muted loop playsinline preload="metadata" poster="media/fisio-poster.jpg" aria-label="Una fisioterapeuta trata la espalda de una paciente">
+      <source src="media/fisio.mp4" type="video/mp4">
+    </video>
     <div class="tarjeta-flotante">
       <p class="tf-num">+2.000</p><p>pacientes nos han confiado su recuperación</p>
     </div>
@@ -44,10 +46,33 @@
 <main>
   <section id="que-te-pasa" class="seccion">
     <p class="antetitulo">Paso 1</p>
-    <h2>¿Qué te pasa?</h2>
-    <p class="intro">Toca lo que más se parece a lo que sientes y te decimos qué tratamiento te puede ayudar.</p>
-    <div class="sintomas" id="sintomas"></div>
-    <div class="recomendacion" id="recomendacion" hidden></div>
+    <h2>¿Dónde te duele?</h2>
+    <p class="intro">Toca la zona y te decimos qué tratamiento te puede ayudar.</p>
+    <div class="dolor">
+      <div class="cuerpo">
+        <svg viewBox="0 0 200 420" aria-hidden="true">
+          <circle cx="100" cy="40" r="26"/>
+          <rect x="90" y="60" width="20" height="22" rx="6"/>
+          <rect x="60" y="76" width="80" height="134" rx="32"/>
+          <rect x="34" y="84" width="22" height="128" rx="11" transform="rotate(8 45 84)"/>
+          <rect x="144" y="84" width="22" height="128" rx="11" transform="rotate(-8 155 84)"/>
+          <rect x="68" y="196" width="29" height="200" rx="14"/>
+          <rect x="103" y="196" width="29" height="200" rx="14"/>
+        </svg>
+        <button class="punto" data-s="cuello" style="--x:50%;--y:17%" aria-label="Cuello y cervicales"><span>Cuello</span></button>
+        <button class="punto" data-s="espalda" style="--x:50%;--y:38%" aria-label="Espalda"><span>Espalda</span></button>
+        <button class="punto izq" data-s="rodilla" style="--x:41%;--y:71%" aria-label="Rodilla o tobillo"><span>Rodilla</span></button>
+      </div>
+      <div class="dolor-lado">
+        <p class="dolor-otro">¿O es otra cosa?</p>
+        <div class="sintomas" id="sintomas"></div>
+        <div class="pista-dolor" id="pista-dolor">
+          <span class="pista-punto" aria-hidden="true"></span>
+          <p>Toca un punto de la silueta o una de estas opciones y aquí verás qué tratamiento te puede ayudar y cuánto cuesta.</p>
+        </div>
+        <div class="recomendacion" id="recomendacion" hidden></div>
+      </div>
+    </div>
   </section>
 
   <section id="tratamientos" class="seccion seccion-alt">

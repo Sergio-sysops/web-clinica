@@ -17,16 +17,19 @@ function pintarEstado() {
     : luego ? `● Cerrado · abrimos hoy a las ${luego.abre}` : "● Cerrado ahora · escríbenos y te respondemos al abrir";
 }
 
+const EN_CUERPO = ["cuello", "espalda", "rodilla"];   // estas se tocan en la silueta
+
 function pintarSintomas() {
-  $("#sintomas").innerHTML = SINTOMAS.map((s) =>
+  $("#sintomas").innerHTML = SINTOMAS.filter((s) => !EN_CUERPO.includes(s.id)).map((s) =>
     `<button class="sintoma" data-s="${esc(s.id)}"><span>${s.icono}</span>${esc(s.nombre)}</button>`).join("");
 }
 
 function elegirSintoma(id) {
   const s = SINTOMAS.find((x) => x.id === id);
-  document.querySelectorAll(".sintoma").forEach((b) => b.classList.toggle("activo", b.dataset.s === id));
+  document.querySelectorAll(".sintoma, .punto").forEach((b) => b.classList.toggle("activo", b.dataset.s === id));
   const recs = s.recomienda.map(tratamiento);
   const caja = $("#recomendacion");
+  $("#pista-dolor").hidden = true;
   caja.hidden = false;
   caja.innerHTML = `
     <p class="rec-texto">${esc(s.texto)}</p>
@@ -81,7 +84,7 @@ function pintarDonde() {
 }
 
 document.addEventListener("click", (e) => {
-  const s = e.target.closest(".sintoma"); if (s) elegirSintoma(s.dataset.s);
+  const s = e.target.closest(".sintoma, .punto"); if (s) elegirSintoma(s.dataset.s);
   const p = e.target.closest("[data-pedir]"); if (p) $("#c-tratamiento").value = p.dataset.pedir;
 });
 
@@ -100,3 +103,23 @@ $("#form-cita").addEventListener("submit", (e) => {
 document.querySelectorAll("[data-c]").forEach((el) => { el.textContent = CLINICA[el.dataset.c]; });
 pintarEstado(); pintarSintomas(); pintarTratamientos(); pintarEquipo(); pintarFormulario(); pintarDudas(); pintarDonde();
 setInterval(pintarEstado, 60000);
+
+// Cápsula del menú: cuando el nombre grande sale de la pantalla, aparece pequeño dentro de la cápsula
+new IntersectionObserver(([e]) => $("#capsula").classList.toggle("con-nombre", !e.isIntersecting),
+  { rootMargin: "-80px 0px 0px 0px" }).observe($("#nombre-grande"));
+
+// Vídeo de portada: crece un poco al bajar (como Apple). Sin movimiento si el usuario lo pide.
+(() => {
+  const caja = $("#portada-video"), video = $("#video-portada");
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) { video.removeAttribute("autoplay"); video.pause(); return; }
+  let pendiente = false;
+  const mover = () => {
+    pendiente = false;
+    const r = caja.getBoundingClientRect();
+    const p = Math.min(1, Math.max(0, 1 - (r.top - innerHeight * 0.15) / (innerHeight * 0.6)));
+    caja.style.setProperty("--p", p.toFixed(3));
+  };
+  addEventListener("scroll", () => { if (!pendiente) { pendiente = true; requestAnimationFrame(mover); } }, { passive: true });
+  addEventListener("resize", mover);
+  mover();
+})();
